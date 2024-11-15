@@ -7,6 +7,8 @@ public class PlayerAndCamMovement : MonoBehaviour
     [SerializeField] private Camera mainCamera; 
     [SerializeField] private InputSystem_Actions actions;
 
+    [SerializeField] float moveSpeed;
+
     private float sensitivity = 420f;
     private float xRotation;
     private float yRotation;
@@ -51,7 +53,7 @@ public class PlayerAndCamMovement : MonoBehaviour
     }
     private Vector3 DetermineMovementVector()
     {
-        Vector2 moveDir = move.ReadValue<Vector2>().normalized;
+        Vector2 moveDir = move.ReadValue<Vector2>().normalized * moveSpeed;
 
         // Calculate movement relative to the player's current rotation
         Vector3 forward = transform.forward * moveDir.y; // Move forward/backward along the z-axis
