@@ -1,8 +1,8 @@
-Shader "Unlit/MyShader"
+Shader "Unlit/ScreenSpaceTextureMask"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        _MainTex ("Render Texture", 2D) = "white" {}
     }
     SubShader
     {
@@ -14,43 +14,40 @@ Shader "Unlit/MyShader"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
 
             struct appdata
             {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
             };
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
+                float2 screenUV : TEXCOORD0;
             };
 
             sampler2D _MainTex;
-            float4 _MainTex_ST;
 
             v2f vert (appdata v)
             {
                 v2f o;
-
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
+
+                // Calculate screen space UV coordinates
+                o.screenUV = o.vertex.xy / o.vertex.w; // Normalize to clip space
+                o.screenUV = o.screenUV * 0.5 + 0.5;   // Convert to 0-1 range
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = fixed4(.2, .2, 0.3, 1);
-                // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                // Sample the texture using screen UVs
+                fixed4 texColor = tex2D(_MainTex, i.screenUV);
+
+                // Output the sampled color
+                return texColor;
             }
             ENDCG
         }
