@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, .35f, groundLayer);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, .35f);
         //Debug.Log(isGrounded);
     }
 
