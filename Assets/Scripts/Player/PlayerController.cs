@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private InputAction move;
     private InputAction jump;
 
+    private Game game;
+
     private void Awake()
     {
         actions = new InputSystem_Actions(); 
@@ -51,7 +53,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        game = Game.I;
+        //Debug.Log(game);
     }
     private void FixedUpdate()
     {
@@ -61,10 +64,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Vector3 movement = DetermineMovementVector();
-        rb.linearVelocity = new Vector3(movement.x, rb.linearVelocity.y, movement.z);
+        if (!Game.isPaused)
+        {
+            Vector3 movement = DetermineMovementVector();
+            rb.linearVelocity = new Vector3(movement.x, rb.linearVelocity.y, movement.z);
 
-        DetermineCamMovement();
+            DetermineCamMovement();
+        }
 
     }
     private void OnJumpPerformed(InputAction.CallbackContext context)

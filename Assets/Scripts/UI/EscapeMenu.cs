@@ -1,0 +1,45 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class EscapeMenu : MonoBehaviour
+{
+
+    [SerializeField] private GameObject escPage;
+    [SerializeField] private Button backToGame;
+
+    private bool isOpen;
+
+    private void Start()
+    {
+        backToGame.onClick.AddListener(() => SetEscMenu(false));
+        escPage.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked; // this needs to be moved somewhere more central eventually 
+    }
+
+    private void Update()
+    {
+        // no reason to tie this to actions system, best if esc isn't rebindable.
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            SetEscMenu(!isOpen);
+        }
+    }
+
+    private void SetEscMenu(bool value)
+    {
+        escPage.SetActive(value);
+        isOpen = value;
+        Game.isPaused = value;
+
+        if (value)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+}
