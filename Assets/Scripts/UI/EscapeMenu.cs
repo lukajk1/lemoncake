@@ -30,7 +30,7 @@ public class EscapeMenu : MonoBehaviour
     {
         escPage.SetActive(value);
         isOpen = value;
-        Game.isPaused = value;
+        Game.IsPaused = value;
 
         if (value)
         {
