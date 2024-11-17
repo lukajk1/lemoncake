@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerLookAndMove : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private Camera mainCamera; 
