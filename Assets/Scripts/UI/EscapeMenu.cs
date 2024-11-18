@@ -6,12 +6,14 @@ public class EscapeMenu : MonoBehaviour
 
     [SerializeField] private GameObject escPage;
     [SerializeField] private Button backToGame;
+    [SerializeField] private Button quit;
 
     private bool isOpen;
 
     private void Start()
     {
         backToGame.onClick.AddListener(() => SetEscMenu(false));
+        quit.onClick.AddListener(() => Application.Quit());
         escPage.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked; // this needs to be moved somewhere more central eventually 
