@@ -10,21 +10,46 @@ public class Game : MonoBehaviour
         {
             return isPaused;
         }
-        set
+        private set
         {
-            isPaused = value;
-            PauseUpdated?.Invoke(value);
+            if (value != isPaused)
+            {
+                isPaused = value;
+                PauseUpdated?.Invoke(value);
 
-            if (value)
-            {
-                Time.timeScale = 0;
-            }
-            else
-            {
-                Time.timeScale = 1;
+                if (value)
+                {
+                    Time.timeScale = 0;
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                }
             }
         }
     }
+    private static int menusOpen;
+    public static int MenusOpen
+    {
+        get
+        {
+            return menusOpen;
+        }
+
+        set
+        {
+            menusOpen = value;
+            if (menusOpen == 0)
+            {
+                IsPaused = false;
+            }
+            else
+            {
+                IsPaused = true;
+            }
+        }
+    }
+
     public static Action<bool> PauseUpdated;
     public static Game I { get; private set; }
 

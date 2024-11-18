@@ -11,8 +11,39 @@ public class PlayerLookAndMove : MonoBehaviour
     [SerializeField] private Rigidbody rb; 
     [SerializeField] private LayerMask groundLayer;
 
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float jumpForce;
+    private float moveSpeed = 4.5f;
+    public float MoveSpeed
+    {
+        get
+        {
+            return moveSpeed;
+        }
+        set
+        {
+            if (value > 0) 
+            {
+                moveSpeed = value;
+            }
+        }
+    }
+
+    private float jumpForce = 400f;
+    public float JumpForce
+    {
+        get
+        {
+            return jumpForce;
+        }
+        set
+        {
+            if (value > 0)
+            {
+                jumpForce = value;
+            }
+        }
+    }
+    private float initJumpForce;
+    private float initMoveSpeed;
 
     private float sensitivity = 420f;
     private float xRotation;
@@ -27,6 +58,9 @@ public class PlayerLookAndMove : MonoBehaviour
 
     private void Awake()
     {
+        initJumpForce = JumpForce;
+        initMoveSpeed = MoveSpeed;
+
         actions = new InputSystem_Actions(); 
 
         rb = player.GetComponent<Rigidbody>();
@@ -75,7 +109,7 @@ public class PlayerLookAndMove : MonoBehaviour
     }
     private void OnJumpPerformed(InputAction.CallbackContext context)
     {
-        if (isGrounded) // possibly do a check to Mathf.Abs(rb.linearVelocity.y) < 0.01f but this could return true in cases where it shouldn't
+        if (isGrounded && !Game.IsPaused) // possibly do a check to Mathf.Abs(rb.linearVelocity.y) < 0.01f but this could return true in cases where it shouldn't
         {
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z); // Reset vertical velocity
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -94,7 +128,7 @@ public class PlayerLookAndMove : MonoBehaviour
     }
     private Vector3 DetermineMovementVector()
     {
-        Vector2 moveDir = move.ReadValue<Vector2>().normalized * moveSpeed;
+        Vector2 moveDir = move.ReadValue<Vector2>().normalized * MoveSpeed;
 
         // Calculate movement relative to the player's current rotation
         Vector3 forward = transform.forward * moveDir.y;
@@ -104,5 +138,10 @@ public class PlayerLookAndMove : MonoBehaviour
         return new Vector3 (combined.x, 0, combined.z);
     }
 
+    public void ResetValues()
+    {
+        JumpForce = initJumpForce;
+        MoveSpeed = initMoveSpeed;
+    }
 
 }

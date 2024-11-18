@@ -30,16 +30,17 @@ public class EscapeMenu : MonoBehaviour
     {
         escPage.SetActive(value);
         isOpen = value;
-        Game.IsPaused = value;
 
         if (value)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            Game.MenusOpen++;
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Game.MenusOpen--;
         }
     }
 }
