@@ -11,8 +11,8 @@ public class PlayerLookAndMove : MonoBehaviour
     [SerializeField] private Rigidbody rb; 
     [SerializeField] private LayerMask groundLayer;
 
-    [SerializeField] float moveSpeed;
-    [SerializeField] float jumpForce;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpForce;
 
     private float sensitivity = 420f;
     private float xRotation;

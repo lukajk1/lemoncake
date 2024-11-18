@@ -5,7 +5,8 @@ public class CheckForInteractable : MonoBehaviour
 {
     [SerializeField] private Camera fpCamera;
 
-    private float range = 5.5f;
+    private const float Range = 5.0f;
+
     private RaycastHit hit;
     private InteractPrompt interactPrompt;
     bool currentInteractState;
@@ -17,7 +18,7 @@ public class CheckForInteractable : MonoBehaviour
     {
         bool isInteractable = false;
 
-        if (Physics.Raycast(fpCamera.transform.position, fpCamera.transform.forward, out hit, range))
+        if (Physics.Raycast(fpCamera.transform.position, fpCamera.transform.forward, out hit, Range))
         {
             isInteractable = hit.collider.CompareTag("Interact");
         }

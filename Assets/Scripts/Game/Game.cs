@@ -14,6 +14,15 @@ public class Game : MonoBehaviour
         {
             isPaused = value;
             PauseUpdated?.Invoke(value);
+
+            if (value)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
         }
     }
     public static Action<bool> PauseUpdated;
