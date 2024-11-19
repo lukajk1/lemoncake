@@ -11,7 +11,7 @@ public class PlayerLookAndMove : MonoBehaviour
     [SerializeField] private Rigidbody rb; 
     [SerializeField] private LayerMask groundLayer;
 
-    private float moveSpeed = 4.5f;
+    private float moveSpeed = 6f;
     public float MoveSpeed
     {
         get
