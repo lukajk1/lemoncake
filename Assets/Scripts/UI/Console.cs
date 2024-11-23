@@ -80,7 +80,7 @@ public class Console : MonoBehaviour
             return false;
         }
 
-        if (parsed.Length >= 3 && (parsed[0] == "player" || parsed[0] == "p"))
+        if (parsed[0] == "player" || parsed[0] == "p")
         {
             if (parsed[1] == "speed" || parsed[1] == "s")
             {
@@ -115,11 +115,18 @@ public class Console : MonoBehaviour
             }
         }
 
+        else if (parsed[0] == "set" || parsed[0] == "s")
+        {
+            if (parsed[1] == "weather" || parsed[1] == "w")
+            {
+                return WeatherController.Instance.SetWeatherFromString(parsed[2]);
+            }
+        }
+
         // otherwise
         Debug.LogWarning($"Unknown command: {formatted}");
         return false;
     }
-
 
 
 }

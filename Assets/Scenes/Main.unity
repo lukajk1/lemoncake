@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 3
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.4717871, g: 0.50380176, b: 0.5849056, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 3d543b272f97fd84f9b1fe6251c32125, type: 2}
   m_HaloStrength: 0.5
@@ -574,8 +574,9 @@ GameObject:
   m_Component:
   - component: {fileID: 441561527}
   - component: {fileID: 441561528}
+  - component: {fileID: 441561529}
   m_Layer: 0
-  m_Name: _Env Particle Manager
+  m_Name: _Env Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -609,6 +610,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rainParticles: {fileID: 1715928697265310116}
+--- !u!114 &441561529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441561526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5dc463d494f12b4aa9761bd84efb80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystemRain: {fileID: 1715928697265310116}
+  rainSound: {fileID: 1761974555}
 --- !u!1 &479589797 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6174648584203476688, guid: be602fe6decf99848b81552dd91f00b7, type: 3}
