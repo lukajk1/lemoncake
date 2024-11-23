@@ -16,11 +16,15 @@ public class WeatherController : MonoBehaviour
     [SerializeField] private AudioSource rainSound;
 
     private const string fogColorBlue = "4fb3ff";
-    private const string fogColorOvercast = "c5c5c5";
-    private const string fogColorDawn = "CC958C";
+    private const string fogColorOvercast = "E9E9E9";
+    private const string fogColorDawn = "E08F82";
     private const string fogColorRainy = "B4C1E7";  
 
-    private const float lightFogDensity = 0.0015f;
+    private const string normalAmbientColor = "28272e";  
+    private const string blueAmbientColor = "0a0d1f";  
+    private const string dawnAmbientColor = "222c57";  
+
+    private const float lightFogDensity = 0.002f;
     private const float moderateFogDensity = 0.0045f;
     private const float heavyFogDensity = 0.0050f;
 
@@ -61,28 +65,31 @@ public class WeatherController : MonoBehaviour
 
     private void SetBlue()
     {
-        RenderSettings.fogColor = HexToColor(fogColorBlue);
-        RenderSettings.fogDensity = heavyFogDensity;
+        SetEnvLighting(lightFogDensity, fogColorBlue, blueAmbientColor);
         SetRain(false);
     }
     private void SetDawn()
     {
-        RenderSettings.fogDensity = moderateFogDensity;
-        RenderSettings.fogColor = HexToColor(fogColorDawn);
+        SetEnvLighting(moderateFogDensity, fogColorDawn, dawnAmbientColor);
         SetRain(false);
     }
     private void SetOvercast()
     {
-        RenderSettings.fogDensity = lightFogDensity;
-        RenderSettings.fogColor = HexToColor(fogColorOvercast);
+        SetEnvLighting(lightFogDensity, fogColorOvercast);
         SetRain(false);
     }
     private void SetRainy()
     {
-        RenderSettings.fogDensity = moderateFogDensity;
-        RenderSettings.fogColor = HexToColor(fogColorRainy);
+        SetEnvLighting(moderateFogDensity, fogColorRainy);
         SetRain(true);
     }
+
+    private void SetEnvLighting(float fogDensity, string fogColor, string ambientLightColor = normalAmbientColor)
+    {
+        RenderSettings.fogDensity = fogDensity; 
+        RenderSettings.fogColor = HexToColor(fogColor);
+        RenderSettings.ambientLight = HexToColor(ambientLightColor);
+    }   
 
     private void SetRain(bool value) { 
         if (value)
