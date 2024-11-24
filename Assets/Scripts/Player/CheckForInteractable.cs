@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
 public class CheckForInteractable : MonoBehaviour
 {
@@ -10,13 +9,18 @@ public class CheckForInteractable : MonoBehaviour
     private RaycastHit hit;
     private InteractPrompt interactPrompt;
     bool currentInteractState;
+    bool isInteractable;
+
+    bool pressedInteract;
     private void Start()
     {
         interactPrompt = FindFirstObjectByType<InteractPrompt>();
     }
     private void Update()
     {
-        bool isInteractable = false;
+        isInteractable = false;
+
+        pressedInteract = Input.GetKeyDown(KeyCode.E);
 
         if (Physics.Raycast(fpCamera.transform.position, fpCamera.transform.forward, out hit, Range))
         {
@@ -27,6 +31,11 @@ public class CheckForInteractable : MonoBehaviour
         {
             currentInteractState = isInteractable;
             interactPrompt.SetInteract(currentInteractState);
+        }
+
+        if (isInteractable && pressedInteract)
+        {
+            hit.collider.GetComponent<Interactable>().OnInteract();
         }
     }
 }

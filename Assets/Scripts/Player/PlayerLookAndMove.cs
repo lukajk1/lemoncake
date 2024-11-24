@@ -98,7 +98,7 @@ public class PlayerLookAndMove : MonoBehaviour
 
     private void Update()
     {
-        if (!Game.IsPaused)
+        if (!Game.IsPaused && !Game.IsInDialogue)
         {
             Vector3 movement = DetermineMovementVector();
             rb.linearVelocity = new Vector3(movement.x, rb.linearVelocity.y, movement.z);

@@ -28,6 +28,9 @@ public class Game : MonoBehaviour
             }
         }
     }
+    private static bool isInDialogue;
+    public static bool IsInDialogue { get; set; }
+
     private static int menusOpen;
     public static int MenusOpen
     {
