@@ -8,7 +8,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text speakerName;
     [SerializeField] private TMP_Text dialogueBody;
 
-    private float wordInterval = 0.08f;
+    private float wordInterval;
     private Coroutine dialogueCoroutine;
 
     public static DialogueManager Instance { get; private set; }
@@ -26,9 +26,12 @@ public class DialogueManager : MonoBehaviour
         dialoguePage.SetActive(false);
     }
 
-    public void Open(string speakerName, string[] dialogue, AudioSource voice)
+    public void Open(string speakerName, string[] dialogue, AudioSource voice, float pitch, float wordInterval, Color nameColor)
     {
         this.speakerName.text = speakerName;
+        this.speakerName.color = nameColor;
+        voice.pitch = pitch;
+        this.wordInterval = wordInterval;
 
         if (dialogueCoroutine == null)
         {

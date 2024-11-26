@@ -3,14 +3,9 @@ using UnityEngine;
 public class NPC : Interactable
 {
     [SerializeField] private AudioSource voice;
+    [SerializeField] private NPCData d;
     public override void OnInteract()
     {
-        string[] dialogues = new string[] 
-        {
-            "Things come, things go, but not much changes.",
-            "Such is life..."
-        };
-
-        DialogueManager.Instance.Open("Gabe", dialogues, voice);
+        DialogueManager.Instance.Open(d.NPCName, d.Dialogues, voice, d.VoicePitch, d.WordInterval, d.NameColor);
     }
 }
