@@ -55,6 +55,11 @@ public class WeatherController : MonoBehaviour
         }
         Instance = this;
     }
+
+    private void Start()
+    {
+        SetLightRain();
+    }
     public bool SetWeatherFromString(string weather)
     {
         switch (weather)
