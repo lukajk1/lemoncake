@@ -3,23 +3,12 @@ using static UnityEngine.ParticleSystem;
 
 public class WeatherController : MonoBehaviour
 {
-    public enum Weather 
-    { 
-        Stormy,
-        Rainy,
-        Overcast,
-        ClearDusk,
-        FoggyDusk,
-        Blue
-    }
-
     public enum Rain 
     { 
         Heavy, 
         Light,
         None
     }
-
 
     [SerializeField] private ParticleSystem particleSystemRain;
     [SerializeField] private AudioSource rainSound;
@@ -41,9 +30,6 @@ public class WeatherController : MonoBehaviour
     private const float lightFogDensity = 0.002f;
     private const float moderateFogDensity = 0.0045f;
     private const float heavyFogDensity = 0.0050f;
-
-    private bool isWindy;
-    private bool isFoggy;
 
     public static WeatherController Instance { get; private set; }
 
@@ -81,7 +67,6 @@ public class WeatherController : MonoBehaviour
                 return true;
             default:
                 return false;
-
         }
     }
 
