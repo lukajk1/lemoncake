@@ -918,6 +918,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystemRain: {fileID: 1715928697265310116}
   rainSound: {fileID: 1761974555}
+  windSound: {fileID: 1761974556}
+  wind: {fileID: 2018669866}
 --- !u!1 &479589797 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6174648584203476688, guid: be602fe6decf99848b81552dd91f00b7, type: 3}

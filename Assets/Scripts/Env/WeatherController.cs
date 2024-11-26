@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class WeatherController : MonoBehaviour
 {
@@ -12,13 +13,26 @@ public class WeatherController : MonoBehaviour
         Blue
     }
 
+    public enum Rain 
+    { 
+        Heavy, 
+        Light,
+        None
+    }
+
+
     [SerializeField] private ParticleSystem particleSystemRain;
     [SerializeField] private AudioSource rainSound;
+    [SerializeField] private AudioSource windSound;
+    [SerializeField] private WindZone wind;
 
     private const string fogColorBlue = "4fb3ff";
     private const string fogColorOvercast = "E9E9E9";
     private const string fogColorDawn = "E08F82";
-    private const string fogColorRainy = "B4C1E7";  
+    private const string fogColorRainy = "B4C1E7";
+
+    private const string lightRainColor = "D1D1D1";
+    private const string heavyRainColor = "DCE9FF";
 
     private const string normalAmbientColor = "28272e";  
     private const string blueAmbientColor = "0a0d1f";  
@@ -54,8 +68,11 @@ public class WeatherController : MonoBehaviour
             case "dawn":
                 SetDawn();
                 return true;
-            case "rainy":
-                SetRainy();
+            case "heavyrain":
+                SetHeavyRain();
+                return true;
+            case "lightrain":
+                SetLightRain();
                 return true;
             default:
                 return false;
@@ -66,22 +83,28 @@ public class WeatherController : MonoBehaviour
     private void SetBlue()
     {
         SetEnvLighting(lightFogDensity, fogColorBlue, blueAmbientColor);
-        SetRain(false);
+        SetRain(Rain.None);
     }
     private void SetDawn()
     {
         SetEnvLighting(moderateFogDensity, fogColorDawn, dawnAmbientColor);
-        SetRain(false);
+        SetRain(Rain.None);
     }
     private void SetOvercast()
     {
         SetEnvLighting(lightFogDensity, fogColorOvercast);
-        SetRain(false);
+        SetRain(Rain.None);
     }
-    private void SetRainy()
+    private void SetHeavyRain()
     {
         SetEnvLighting(moderateFogDensity, fogColorRainy);
-        SetRain(true);
+        SetRain(Rain.Heavy);
+    }
+
+    private void SetLightRain()
+    {
+        SetEnvLighting(lightFogDensity, fogColorOvercast);
+        SetRain(Rain.Light);
     }
 
     private void SetEnvLighting(float fogDensity, string fogColor, string ambientLightColor = normalAmbientColor)
@@ -91,16 +114,42 @@ public class WeatherController : MonoBehaviour
         RenderSettings.ambientLight = HexToColor(ambientLightColor);
     }   
 
-    private void SetRain(bool value) { 
-        if (value)
+    private void SetRain(Rain rainType)
+    {
+        switch (rainType) 
         {
-            particleSystemRain.gameObject.SetActive(true);
-            rainSound.Play();
-        }
-        else
-        {
-            particleSystemRain.gameObject.SetActive(false);
-            rainSound.Pause();
+            case Rain.Heavy:
+                var emission = particleSystemRain.emission;
+                emission.rateOverTime = 700f;
+                var main = particleSystemRain.main;
+                main.startSpeed = new ParticleSystem.MinMaxCurve(31.4f, 42f);
+                main.startColor = HexToColor(heavyRainColor);
+
+                wind.windMain = 3f;
+                particleSystemRain.gameObject.SetActive(true);
+                rainSound.Play();
+                windSound.Play();
+                break;
+
+            case Rain.Light:
+                emission = particleSystemRain.emission;
+                emission.rateOverTime = 150f;
+                main = particleSystemRain.main;
+                main.startSpeed = new ParticleSystem.MinMaxCurve(24f, 34f);
+                main.startColor = HexToColor(lightRainColor);
+
+                wind.windMain = 0f;
+                particleSystemRain.gameObject.SetActive(true);
+                rainSound.Play();
+                windSound.Pause();
+                break;
+
+            case Rain.None:
+                wind.windMain = 0f;
+                particleSystemRain.gameObject.SetActive(false);
+                rainSound.Pause();
+                windSound.Play();
+                break;
         }
     }
 
