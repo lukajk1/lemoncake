@@ -10,9 +10,10 @@
 [Bb]uild*/
 /_dev/
 
-# ignore blender assets
+# ignore 3d assets
 *.blend
 *.blend1
+*.fbx
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
