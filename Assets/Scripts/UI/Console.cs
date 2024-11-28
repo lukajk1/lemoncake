@@ -12,9 +12,15 @@ public class Console : MonoBehaviour
 
     private string lastCommand;
 
+    private Vector3 playerInitialPosition;
+    private GameObject player;
+
     void Start()
     {
         playerController = FindFirstObjectByType<PlayerLookAndMove>();
+
+        player = GameObject.Find("Player"); //replace in future when I can find by a unique type 
+        playerInitialPosition = player.transform.position; 
 
         inputParent = inputField.transform.parent.gameObject;
         inputParent.SetActive(false);
@@ -121,6 +127,12 @@ public class Console : MonoBehaviour
             {
                 return WeatherController.Instance.SetWeatherFromString(parsed[2]);
             }
+        }
+
+        else if (parsed[0] == "reset" || parsed[0] == "r")
+        {
+            player.transform.position = playerInitialPosition;
+            return true;
         }
 
         // otherwise
