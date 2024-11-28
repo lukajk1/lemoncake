@@ -23,7 +23,8 @@ public class WeatherController : MonoBehaviour
     private const string lightRainColor = "D1D1D1";
     private const string heavyRainColor = "DCE9FF";
 
-    private const string normalAmbientColor = "28272e";  
+    //private const string normalAmbientColor = "28272e";  old color, darker. new ambient allows more local color
+    private const string normalAmbientColor = "38373d";  
     private const string blueAmbientColor = "0a0d1f";  
     private const string dawnAmbientColor = "222c57";  
 
