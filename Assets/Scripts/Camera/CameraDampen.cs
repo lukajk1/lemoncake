@@ -10,7 +10,7 @@ public class CameraDampen : MonoBehaviour
     private Vector3 delayedPos;
     private Vector3 dampedPos;
 
-    private float verticalOffset = 1f;
+    private float verticalOffset = 1.2f;
 
     private void LateUpdate()
     {

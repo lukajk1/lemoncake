@@ -135,6 +135,15 @@ public class Console : MonoBehaviour
             return true;
         }
 
+        else if (parsed[0] == "fov")
+        {
+            if (float.TryParse(parsed[1], out float fov))
+            {
+                FindAnyObjectByType<FOV>().SetFOV(fov);
+                return true;
+            }
+        }
+
         // otherwise
         Debug.LogWarning($"Unknown command: {formatted}");
         return false;

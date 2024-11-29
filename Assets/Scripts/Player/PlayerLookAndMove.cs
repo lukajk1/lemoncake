@@ -27,7 +27,7 @@ public class PlayerLookAndMove : MonoBehaviour
         }
     }
 
-    private float jumpForce = 400f;
+    private float jumpForce = 480f;
     public float JumpForce
     {
         get
