@@ -52,17 +52,19 @@ public class Game : MonoBehaviour
             }
         }
     }
+    public Transform PlayerTransform;
+    public Camera PlayerCamera;
 
     public static Action<bool> PauseUpdated;
-    public static Game I { get; private set; }
+    public static Game Instance { get; private set; }
 
     private void Awake()
     {
-        if (I != null) 
+        if (Instance != null) 
         {
-            Debug.LogError($"More than one instance of {I} in scene");
+            Debug.LogError($"More than one instance of {Instance} in scene");
         }
 
-        I = this;
+        Instance = this;
     }
 }

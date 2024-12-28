@@ -87,7 +87,7 @@ public class PlayerLookAndMove : MonoBehaviour
     }
     private void Start()
     {
-        game = Game.I;
+        game = Game.Instance;
         //Debug.Log(game);
     }
     private void FixedUpdate()
