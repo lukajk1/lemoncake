@@ -65,6 +65,9 @@ public class WeatherController : MonoBehaviour
             case "lightrain":
                 SetLightRain();
                 return true;
+            case "foggy":
+                SetFoggy();
+                return true;
             default:
                 return false;
         }
@@ -85,15 +88,19 @@ public class WeatherController : MonoBehaviour
         SetEnvLighting(lightFogDensity, fogColorOvercast);
         SetRain(Rain.None);
     }
+    private void SetFoggy()
+    {
+        SetEnvLighting(moderateFogDensity, fogColorRainy);
+        SetRain(Rain.None);
+    }
     private void SetHeavyRain()
     {
         SetEnvLighting(moderateFogDensity, fogColorRainy);
         SetRain(Rain.Heavy);
     }
-
     private void SetLightRain()
     {
-        SetEnvLighting(lightFogDensity, fogColorOvercast);
+        SetEnvLighting(lightFogDensity, fogColorRainy);
         SetRain(Rain.Light);
     }
 
