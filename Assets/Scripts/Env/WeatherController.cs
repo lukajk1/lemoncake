@@ -44,7 +44,7 @@ public class WeatherController : MonoBehaviour
 
     private void Start()
     {
-        SetHeavyRain();
+        SetLightRain();
     }
     public bool SetWeatherFromString(string weather)
     {
@@ -100,7 +100,7 @@ public class WeatherController : MonoBehaviour
     }
     private void SetLightRain()
     {
-        SetEnvLighting(lightFogDensity, fogColorRainy);
+        SetEnvLighting(moderateFogDensity, fogColorRainy);
         SetRain(Rain.Light);
     }
 

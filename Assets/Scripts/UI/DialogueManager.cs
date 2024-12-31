@@ -26,7 +26,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePage.SetActive(false);
     }
 
-    public void Open(string speakerName, string[] dialogue, AudioSource voice, float pitch, float wordInterval, Color nameColor)
+    public void Open(string speakerName, string[] dialogue, AudioSource voice, float pitch, float wordInterval, Color nameColor, NPC npc)
     {
         this.speakerName.text = speakerName;
         this.speakerName.color = nameColor;
@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueCoroutine == null)
         {
             dialoguePage.SetActive(true);
-            dialogueCoroutine = StartCoroutine(animateDialogue(speakerName, dialogue, voice));
+            dialogueCoroutine = StartCoroutine(animateDialogue(speakerName, dialogue, voice, npc));
         }
     }
 
@@ -45,7 +45,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePage.SetActive(false);
     }
 
-    private IEnumerator animateDialogue(string speakerName, string[] dialogue, AudioSource voice)
+    private IEnumerator animateDialogue(string speakerName, string[] dialogue, AudioSource voice, NPC npc)
     {
         Game.IsInDialogue = true;
 
@@ -64,6 +64,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         Close();
+        npc.OnClose();
         Game.IsInDialogue = false;
         dialogueCoroutine = null;
     }
