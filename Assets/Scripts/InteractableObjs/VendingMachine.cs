@@ -10,7 +10,7 @@ public class VendingMachine : Interactable
     {
         if (stock > 0)
         {
-            Instantiate(can, transform.position + (new Vector3(0, 0, -1f) * 1.5f), Quaternion.identity);
+            Instantiate(can, transform.position + (new Vector3(0, 0, -1f) * 0.8f), Quaternion.identity);
             stock--;
 
             if (stock <= 0)
