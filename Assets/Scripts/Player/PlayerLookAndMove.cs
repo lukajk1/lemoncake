@@ -130,13 +130,17 @@ public class PlayerLookAndMove : MonoBehaviour
     {
         Vector2 moveDir = move.ReadValue<Vector2>().normalized * MoveSpeed;
 
-        // Calculate movement relative to the player's current rotation
-        Vector3 forward = transform.forward * moveDir.y;
-        Vector3 right = transform.right * moveDir.x;    
+        // Get only the horizontal (yaw) rotation of the player, ignoring the pitch (up/down)
+        float yRotation = transform.eulerAngles.y;
+
+        // Calculate movement relative to the player's current horizontal rotation
+        Vector3 forward = new Vector3(Mathf.Sin(yRotation * Mathf.Deg2Rad), 0, Mathf.Cos(yRotation * Mathf.Deg2Rad)) * moveDir.y;
+        Vector3 right = transform.right * moveDir.x;
 
         Vector3 combined = forward + right;
-        return new Vector3 (combined.x, 0, combined.z);
+        return new Vector3(combined.x, 0, combined.z);
     }
+
 
     public void ResetValues()
     {
