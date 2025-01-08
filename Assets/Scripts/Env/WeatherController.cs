@@ -45,7 +45,7 @@ public class WeatherController : MonoBehaviour
 
     private void Start()
     {
-        SetLightRain();
+        SetHeavyRain();
     }
     public bool SetWeatherFromString(string weather)
     {

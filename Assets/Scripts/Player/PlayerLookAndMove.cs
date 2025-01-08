@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 
 public class PlayerLookAndMove : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerLookAndMove : MonoBehaviour
 
     [SerializeField] private Rigidbody rb; 
     [SerializeField] private LayerMask groundLayer;
+
+    [SerializeField] private Transform lastJumpedFrom;
 
     private float moveSpeed = 6f;
     public float MoveSpeed
@@ -56,6 +59,8 @@ public class PlayerLookAndMove : MonoBehaviour
 
     private Game game;
 
+    private float positionSaveInterval = 0.5f;
+    private float timeSinceLastSave = 0f;
     private void Awake()
     {
         initJumpForce = JumpForce;
@@ -88,12 +93,30 @@ public class PlayerLookAndMove : MonoBehaviour
     private void Start()
     {
         game = Game.Instance;
-        //Debug.Log(game);
     }
     private void FixedUpdate()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, .35f);
+        timeSinceLastSave += Time.fixedDeltaTime;
+
+        RaycastHit hit;
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, .35f);
         //Debug.Log(isGrounded);
+
+        if (isGrounded)
+        {
+            if (hit.collider.gameObject.layer == 4)
+            {
+                player.transform.position = lastJumpedFrom.position;
+            }
+            else
+            {
+                if (timeSinceLastSave > positionSaveInterval)
+                {
+                    lastJumpedFrom.position = rb.position;
+                    timeSinceLastSave = 0f;
+                }
+            }
+        }
     }
 
     private void Update()
