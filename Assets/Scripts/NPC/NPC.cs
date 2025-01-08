@@ -4,7 +4,6 @@ public class NPC : Interactable
 {
     [SerializeField] private AudioSource voice;
 
-    [SerializeField] private string NPCName;
     [SerializeField] private NPCDialogueData.NPC npc;
 
     [Range(0.5f, 1.5f)]
@@ -19,7 +18,7 @@ public class NPC : Interactable
     {
         int randomIndex = Random.Range(0, 2);
 
-        DialogueManager.Instance.Open(NPCName, NPCDialogueData.GetDialogue(npc)[dialogueIndex], voice, VoicePitch, WordInterval, NameColor, this);
+        DialogueManager.Instance.Open(NPCDialogueData.GetName(npc), NPCDialogueData.GetDialogue(npc)[dialogueIndex], voice, VoicePitch, WordInterval, NameColor, this);
 
     }
 

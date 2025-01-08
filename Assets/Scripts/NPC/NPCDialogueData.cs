@@ -4,13 +4,35 @@ public class NPCDialogueData : MonoBehaviour
 {
     public enum NPC
     {
-        Gilbert,
-        Dennis,
-        Mo, 
-        Archibald,
         Barney,
-        Bartholomew
+        Dennis,
+        Gilbert,
+        Mo,
+        Murphy,
+        Nancy
     }
+
+    public static string GetName(NPC npc)
+    {
+        switch (npc)
+        {
+            case NPC.Barney:
+                return "Barney";
+            case NPC.Dennis:
+                return "Dennis";
+            case NPC.Gilbert:
+                return "Gilbert";
+            case NPC.Mo:
+                return "Mo";
+            case NPC.Murphy:
+                return "Murphy";
+            case NPC.Nancy:
+                return "Nancy";
+            default:
+                return "(Name was not found)";
+        }
+    }
+
     public static string[][] GetDialogue(NPC npc)
     {
         switch (npc)
@@ -18,17 +40,8 @@ public class NPCDialogueData : MonoBehaviour
             case NPC.Barney:
                 return new string[][]
                     {
-                        new string[] { "Y'know, the Earth didn't always look like this.",
-                            "Most of the surface was solid ground at one point." },
-                        new string[] { "But one day the rain just kept coming down...  and it never stopped." },
-                        new string[] { "If I could do it all over again I'd take better care of my knees." }
-                    };
-            case NPC.Gilbert:
-                return new string[][]
-                    {
-                        new string[] { "Y'know, the Earth didn't always look like this.",
-                            "Most of the surface was solid ground at one point." },
-                        new string[] { "But one day the rain just kept coming down...  and it never stopped." },
+                        new string[] { "Y'know, the Earth didn't always look like this.", 
+                            "But one day the rain just kept coming down...  and it never stopped." },
                         new string[] { "If I could do it all over again I'd take better care of my knees." }
                     };
             case NPC.Dennis:
@@ -36,23 +49,29 @@ public class NPCDialogueData : MonoBehaviour
                     {
                         new string[] { "You wouldn't happen to have a cigarette...?" }
                     };
-            case NPC.Bartholomew:
+            case NPC.Gilbert:
                 return new string[][]
                     {
-                        new string[] { "Logic must just be an apprehension of our material observations. " },
-                        new string[] { "\"Our minds can create new ideas from the components which experience has already given us, by combining together our existing ideas in new ways or by shuffling the components of our existing ideas,", "but we are quite unable to form any completely new ideas beyond those that have already been given to us by sensation or feeling.\"" },
-                        new string[] { "Isn't the statement 'everything is meaningless' an oxymoron?" },
-                        new string[] { "A purely subjective foundation for meaning is no less fulfilling." }
+                        new string[] { "Looking to buy a fish?" }
                     };
             case NPC.Mo:
                 return new string[][]
                     {
-                        new string[] { "Mo" }
+                        new string[] { "(Sigh...)" },
+                        new string[] { "It all passes eventually..." }
                     };
-            case NPC.Archibald:
+            case NPC.Murphy:
                 return new string[][]
                     {
-                        new string[] { "Keep an eye on Levi over there, would you? Poor kid always insists on more alchohol than he can take." }
+                        new string[] { "What do you think the weather's like on Mars?" },
+                        new string[] { "I'm gonna get away from this place someday!" },
+                        new string[] { "We went to the moon at one point, you know?" }
+                    };
+            case NPC.Nancy:
+                return new string[][]
+                    {
+                        new string[] { "Me and Gilbert, we do our best." },
+                        new string[] { "I'm afraid the fish just aren't biting like they used to.." }
                     };
             default:
                 return new string[][]
