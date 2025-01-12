@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1684fd23873fb4440acc5b7900881dc8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 69.6498
+      value: 59.171707
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1684fd23873fb4440acc5b7900881dc8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 53.969
+      value: 45.848297
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1684fd23873fb4440acc5b7900881dc8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -73.906815
+      value: -74.499146
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1684fd23873fb4440acc5b7900881dc8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -48,10 +48,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2571118854743697038, guid: 1684fd23873fb4440acc5b7900881dc8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d8f75813cea64a240b6009edd2c13030, type: 2}
     - target: {fileID: 919132149155446097, guid: 1684fd23873fb4440acc5b7900881dc8, type: 3}
       propertyPath: m_Name
       value: barrel
       objectReference: {fileID: 0}
+    - target: {fileID: 7071182760956848314, guid: 1684fd23873fb4440acc5b7900881dc8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 76b561b6598d9924693e0c77a288b334, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NPCDialogueData : MonoBehaviour
+public class NPCData : MonoBehaviour
 {
     public enum NPC
     {

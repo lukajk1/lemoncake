@@ -4,7 +4,7 @@ public class NPC : Interactable
 {
     [SerializeField] private AudioSource voice;
 
-    [SerializeField] private NPCDialogueData.NPC npc;
+    [SerializeField] private NPCData.NPC npc;
 
     [Range(0.5f, 1.5f)]
     public float VoicePitch = 1f;
@@ -18,13 +18,13 @@ public class NPC : Interactable
     {
         int randomIndex = Random.Range(0, 2);
 
-        DialogueManager.Instance.Open(NPCDialogueData.GetName(npc), NPCDialogueData.GetDialogue(npc)[dialogueIndex], voice, VoicePitch, WordInterval, NameColor, this);
+        DialogueManager.Instance.Open(NPCData.GetName(npc), NPCData.GetDialogue(npc)[dialogueIndex], voice, VoicePitch, WordInterval, NameColor, this);
 
     }
 
     public void OnClose()
     {
-        if (dialogueIndex < NPCDialogueData.GetDialogue(npc).Length - 1)
+        if (dialogueIndex < NPCData.GetDialogue(npc).Length - 1)
         {
             dialogueIndex++;
         }
