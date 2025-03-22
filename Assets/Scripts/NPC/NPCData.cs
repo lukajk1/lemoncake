@@ -4,6 +4,7 @@ public class NPCData : MonoBehaviour
 {
     public enum NPC
     {
+        Archibald,
         Barney,
         Dennis,
         Gilbert,
@@ -16,6 +17,8 @@ public class NPCData : MonoBehaviour
     {
         switch (npc)
         {
+            case NPC.Archibald:
+                return "Archibald";
             case NPC.Barney:
                 return "Barney";
             case NPC.Dennis:
@@ -37,6 +40,12 @@ public class NPCData : MonoBehaviour
     {
         switch (npc)
         {
+            case NPC.Archibald:
+                return new string[][]
+                    {
+                        new string[] { "We don't get new faces around here too often!",
+                            "Have a look around!" }
+                    };
             case NPC.Barney:
                 return new string[][]
                     {

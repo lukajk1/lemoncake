@@ -48,7 +48,7 @@ public class PlayerLookAndMove : MonoBehaviour
     private float initJumpForce;
     private float initMoveSpeed;
 
-    private float sensitivity = 420f;
+    private float sensitivity = 250f;
     private float xRotation;
     private float yRotation;
 

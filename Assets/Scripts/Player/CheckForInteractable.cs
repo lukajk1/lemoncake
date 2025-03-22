@@ -7,14 +7,15 @@ public class CheckForInteractable : MonoBehaviour
     private const float Range = 5.0f;
 
     private RaycastHit hit;
-    private InteractPrompt interactPrompt;
+    [SerializeField] private InteractPrompt interactPrompt;
+
     bool currentInteractState;
     bool isInteractable;
 
     bool pressedInteract;
     private void Start()
     {
-        interactPrompt = FindFirstObjectByType<InteractPrompt>();
+        
     }
     private void Update()
     {
